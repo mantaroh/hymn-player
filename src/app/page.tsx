@@ -10,23 +10,6 @@ const MAX_NO = 502;
 export default function Home() {
   const [currentNo, setCurrentNo] = useState(1);
   const audioURL = `https://hymn-player.vercel.app/api/get-hymn?no=${('0000'+currentNo).slice(-3)}`;
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const [blobUrl, setBlobUrl] = useState<string>("");
-
-  const getAudio = async () => {
-    const midiURL = `https://hymn-player.vercel.app/api/get-hymn?no=${('0000'+currentNo).slice(-3)}&format=midi`;
-    const response = await fetch(midiURL);
-    const midi = await response.arrayBuffer();
-    const wavBlob = midiToWav(midi).toBlob();
-    console.log(wavBlob);
-    if (audioRef.current) {
-      audioRef.current.src = URL.createObjectURL(wavBlob);
-      audioRef.current.load();
-    }
-    setBlobUrl(URL.createObjectURL(wavBlob));
-
-    //return URL.createObjectURL(blob);
-  }
 
   return (
     <main className="grid-cols-1 w-full items-center p-12">
@@ -46,15 +29,9 @@ export default function Home() {
         max={MAX_NO}
         min={MIN_NO}
       />
-      <button
-        className="p-2 bg-blue-500 text-white rounded-lg"
-        onClick={getAudio}
-        >Play</button>
       <figure>
         <figcaption>賛美歌：{('0000'+currentNo).slice(-3)}番</figcaption>
         <MidiPalyer src={audioURL}></MidiPalyer>
-        <audio ref={audioRef} controls></audio>
-        <a href={blobUrl}>Download</a>
       </figure>
     </main>
   );
