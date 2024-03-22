@@ -21,6 +21,14 @@ export default function Home() {
           賛美歌は1番から502番まであります。<br/>
           番号を入力して再生ボタンを押してください。
         </p>
+        <p>
+          <span className="font-bold">注意:</span>
+          <ul className="list-disc">
+            <li>iPhone ご利用の方は、消音モードをオフにしてください [やり方は<a className="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="https://www.nojima.co.jp/support/koneta/84811/" target="_blank">こちら</a>]</li>
+            <li>Android ご利用の方は、マナーモードをオフにしてください</li>
+            <li>お気にいりに登録していただけるといつでもアクセスできるようになります</li>
+          </ul>
+        </p>
       </div>
       <input
         className="w-1/4 p-2 border-2 border-gray-300 rounded-lg mt-10 mb-10"
