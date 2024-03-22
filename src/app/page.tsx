@@ -2,6 +2,7 @@
 import { useRef, useState } from "react";
 //@ts-ignore
 import MidiPalyer from 'react-midi-player';
+//@ts-ignore
 import { midiToWav }  from 'synth-js';
 
 const MIN_NO = 1;
