@@ -9,12 +9,12 @@ const MIN_NO = 1;
 const MAX_NO = 502;
 export default function Home() {
   const [currentNo, setCurrentNo] = useState(1);
-  const audioURL = `http://hymn-player.vercel.app/api/get-hymn?no=${('0000'+currentNo).slice(-3)}`;
+  const audioURL = `https://hymn-player.vercel.app/api/get-hymn?no=${('0000'+currentNo).slice(-3)}`;
   const audioRef = useRef<HTMLAudioElement>(null);
   const [blobUrl, setBlobUrl] = useState<string>("");
 
   const getAudio = async () => {
-    const midiURL = `http://hymn-player.vercel.app/api/get-hymn?no=${('0000'+currentNo).slice(-3)}&format=midi`;
+    const midiURL = `https://hymn-player.vercel.app/api/get-hymn?no=${('0000'+currentNo).slice(-3)}&format=midi`;
     const response = await fetch(midiURL);
     const midi = await response.arrayBuffer();
     const wavBlob = midiToWav(midi).toBlob();
