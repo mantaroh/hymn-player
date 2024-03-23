@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/third-parties": "^14.1.4",
     "html-midi-player": "^1.5.0",
     "midi-player-js": "^2.0.16",
     "next": "14.1.3",
