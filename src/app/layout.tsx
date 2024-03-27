@@ -7,7 +7,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "ヒムプレイヤー(Web)",
-  description: "日本福音ルーテル教会賛美歌",
+  description: "讃美歌を再生するアプリです。日本福音ルーテル教会讃美歌の讃美歌を再生できます。",
+  keywords: ["ヒムプレイヤー", "讃美歌", "日本福音ルーテル教会", "スマホで讃美歌"],
 };
 
 export default function RootLayout({

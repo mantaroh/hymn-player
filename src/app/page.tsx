@@ -14,10 +14,10 @@ export default function Home() {
     <main className="grid-cols-1 w-full items-center p-12">
       <h1 className="text-4xl">ヒムプレイヤー(Web版)</h1>
       <div className="grid-cols-1 pb-30">
-        <p className="pb-10">日本福音ルーテル教会の賛美歌を再生するアプリです。</p>
+        <p className="pb-10">日本福音ルーテル教会の讃美歌を再生するアプリです。</p>
         <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="https://jelc.or.jp/jelc-archive/doc_for_service/" target="_blank">ルーテル教会アーカイブはこちらから</a>
         <p className="pt-10 pb-10">
-          賛美歌は1番から502番まであります。<br/>
+          讃美歌は1番から502番まであります。<br/>
           番号を入力して再生ボタンを押してください。
         </p>
       </div>
