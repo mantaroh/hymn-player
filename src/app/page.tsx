@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 //@ts-ignore
 import MidiPalyer from 'react-midi-player';
 
@@ -7,8 +7,26 @@ const MIN_NO = 1;
 const MAX_NO = 502;
 export default function Home() {
   const [currentNo, setCurrentNo] = useState(1);
+  const musicPlayerDiv = useRef<HTMLDivElement | null>(null);
   const audioURL = `https://hymn-player.vercel.app/api/get-hymn?no=${('000'+currentNo).slice(-3)}`;
   const selectItems = Array.from({length: MAX_NO - MIN_NO + 1}, (_, i) => i + MIN_NO);
+
+  useEffect(() => {
+    if (musicPlayerDiv.current) {
+      const rythmButton = musicPlayerDiv.current.querySelector('span > div > div:nth-child(5)') as HTMLDivElement | null;
+      console.log(rythmButton);
+      if (rythmButton) {
+        rythmButton.style.display = 'none';
+      }
+      
+      const playerContainer = musicPlayerDiv.current.querySelector('span > div') as HTMLDivElement | null;
+      if (playerContainer) {
+        playerContainer.style.width = '240px';
+        playerContainer.style.transform = 'scale(1.2)';
+        playerContainer.style.transformOrigin = 'top left';
+      }
+    }
+  }, [currentNo]);
 
   return (
     <main className="grid-cols-1 w-full items-center p-12">
@@ -32,19 +50,25 @@ export default function Home() {
       </select>
       <figure className="pb-10">
         <figcaption>現在の美歌：{('000'+currentNo).slice(-3)}番</figcaption>
-        <MidiPalyer src={audioURL}></MidiPalyer>
+        <div id="music-player" ref={musicPlayerDiv}>
+          <MidiPalyer src={audioURL}></MidiPalyer>
+        </div>
       </figure>
       <div>
-        <p>
-          <span className="font-bold">注意:</span>
-          <ul className="list-disc">
-            <li>iPhone ご利用の方は、消音モードをオフにしてください [やり方は<a className="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="https://www.nojima.co.jp/support/koneta/84811/" target="_blank">こちら</a>]</li>
-            <li>Android ご利用の方は、マナーモードをオフにしてください</li>
-            <li>お気にいりに登録していただけるといつでもアクセスできるようになります</li>
-            <li>コードはオープンソースで公開しています。[<a href="https://github.com/mantaroh/hymn-player"  className="font-medium text-blue-600 dark:text-blue-500 hover:underline">こちら</a>]</li>
-            <li>お問い合わせは<a className="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="mailto:mantaroh@gmail.com">こちら</a>まで。</li>
+        <span className="font-bold">新着情報</span>
+        <ul className="list-disc">
+          <li>2024/05/09: プレイヤーのボタンを大きくしました</li>
+        </ul>
+      </div>
+      <div>
+        <span className="font-bold">注意:</span>
+        <ul className="list-disc">
+          <li>iPhone ご利用の方は、消音モードをオフにしてください [やり方は<a className="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="https://www.nojima.co.jp/support/koneta/84811/" target="_blank">こちら</a>]</li>
+          <li>Android ご利用の方は、マナーモードをオフにしてください</li>
+          <li>お気にいりに登録していただけるといつでもアクセスできるようになります</li>
+          <li>コードはオープンソースで公開しています。[<a href="https://github.com/mantaroh/hymn-player"  className="font-medium text-blue-600 dark:text-blue-500 hover:underline">こちら</a>]</li>
+          <li>お問い合わせは<a className="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="mailto:mantaroh@gmail.com">こちら</a>まで。</li>
           </ul>
-        </p>
       </div>
     </main>
   );
